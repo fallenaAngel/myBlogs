@@ -1,0 +1,33 @@
+/*
+* create by jack in 2018-12-05
+*/
+// 字体大小
+
+// 颜色
+
+// 混合宏
+@mixin wh ($w, $h) {
+  width: $w;
+  height: $h;
+}
+@mixin border ($type, $width, $color) {
+  border-#{$type}: $width solid $color;
+}
+@mixin centerPlace($place) {
+  display: flex;
+  align-items: center;
+  justify-content: $place;
+}
+@mixin SingleTextWrapping {
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+@mixin TextWrapping ($num) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; 
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}

@@ -1,0 +1,80 @@
+@import '../../assets/style/config.scss';
+.homeWrap {
+  @include wh(100%, 100%);
+}
+// antd样式重置
+div.ant-dropdown-placement-bottomCenter {
+  position: absolute;
+  background: #222;
+  top: 51.6px;
+}
+.dropDownStyle {
+  background: #222;
+  top: 51.6px;
+}
+// loading样式
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  @include wh(100%, 100%);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+// 头部样式
+.header {
+  @include wh(100%, 52px);
+  background: #222;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  color: #fff;
+  overflow: hidden;
+  >div {
+    line-height: 52px;
+  }
+  .header-col2 {
+    .header-tag {
+      float: left;
+      padding: 0 30px;
+      text-align: center;
+      a {
+        color: #eee;
+        .anticon-caret-down {
+          margin-left: 5px;
+        }
+      }
+      &:hover {
+        background: rgb(116, 115, 115);
+      }
+    }
+  }
+  // 头部搜索框
+  .header-search {
+    input {
+      border-radius: 10px;
+      height: 25px;
+    }
+  }
+}
+// 内容部分
+.homeContent {
+  height: 3000px;
+  background: #fff;
+  margin: 52px 50px 10px;
+  // 轮播图样式重置
+  .ant-carousel .slick-slide {
+    text-align: center;
+    height: 313px;
+    line-height: 313px;
+    background: #364d79;
+    overflow: hidden;
+  }
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
+  }
+}

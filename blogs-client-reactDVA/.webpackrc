@@ -1,0 +1,25 @@
+{
+  "entry": "src/index.js",
+  "theme": "",
+  "disableCSSModules": true,
+  "extraResolveExtensions": [".jsx", ".js", ".json"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "outputPath": "./dist",
+  "extraBabelPlugins": [
+    [
+      "import",
+      { "libraryName": "antd", "libraryDirectory": "es"}
+    ]
+  ],
+  "hash": false,
+  "env": {
+    "development": {
+      "BROWSER": "none",
+      "extraBabelPlugins": ["dva-hmr"]
+    }
+  },
+  "proxy": {}
+}
