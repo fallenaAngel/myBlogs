@@ -1,17 +1,49 @@
 @import '../../assets/style/config.scss';
-.homeWrap {
+.homeWrap, .ant-layout {
   @include wh(100%, 100%);
+  min-width: 375px;
+}
+.headerCon, .ant-carousel {
+  min-width: 375px;
+}
+.homeContent {
+  min-height: 880px;
+  background: #fff;
+}
+.ant-layout-footer {
+  padding: 15px 0;
+}
+.ant-layout-header {
+  padding: 0 30px;
 }
 // antd样式重置
-div.ant-dropdown-placement-bottomCenter {
-  position: absolute;
-  background: #222;
-  top: 51.6px;
+.ant-card-body, .ant-card-head {
+  padding: 0;
 }
-.dropDownStyle {
-  background: #222;
-  top: 51.6px;
+.ant-layout-sider {
+  background: #f0f2f5;
 }
+.ant-list-item {
+  padding: 10px 20px;
+  &:hover {
+    background: rgba(227, 252, 218, 0.5);
+  }
+  .ant-avatar {
+    @include wh(95px, 85px);
+    border-radius: 0;
+  }
+}
+// 轮播图样式重置
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 313px;
+  line-height: 313px;
+  overflow: hidden;
+}
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+
 // loading样式
 .loading {
   position: fixed;
@@ -32,15 +64,26 @@ div.ant-dropdown-placement-bottomCenter {
   position: fixed;
   top: 0;
   z-index: 999;
-  color: #fff;
-  overflow: hidden;
+  .headerCon {
+    max-width: 1200px;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    margin: 0 auto;
+  }
   >div {
     line-height: 52px;
   }
-  .header-col2 {
+  .header-title {
+    width: 14%;
+  }
+  .header-tags {
+    width: 56%;
+    overflow: hidden;
     .header-tag {
       float: left;
-      padding: 0 30px;
+      width: 20%;
+      max-width: 100px;
       text-align: center;
       a {
         color: #eee;
@@ -55,6 +98,7 @@ div.ant-dropdown-placement-bottomCenter {
   }
   // 头部搜索框
   .header-search {
+    width: 30%;
     input {
       border-radius: 10px;
       height: 25px;
@@ -63,18 +107,166 @@ div.ant-dropdown-placement-bottomCenter {
 }
 // 内容部分
 .homeContent {
-  height: 3000px;
-  background: #fff;
-  margin: 52px 50px 10px;
-  // 轮播图样式重置
-  .ant-carousel .slick-slide {
-    text-align: center;
-    height: 313px;
-    line-height: 313px;
-    background: #364d79;
-    overflow: hidden;
+  background: #f0f2f5;
+  margin: 52px 30px 10px;
+  // 内容部分
+  .content {
+    display: flex;
+    margin-top: 10px;
+    box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, .1);
+    .content-left {
+      flex: 1;
+      border-right: 5px solid #f1f1f1;
+      div.ant-card-head-title {
+        font-weight: bold;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 10px;
+        background: #fbfbfb;
+      }
+    }
+    .siderBox {
+      .ant-card {
+        clear: both;
+        margin-bottom: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+        border-radius: 8px;
+        .ant-card-head {
+          padding: 0px 15px 0px;
+          border-bottom: 1px solid #eaeaea;
+          background-color: #fbfbfb;
+          font-size: 18px;
+          line-height: 20px;
+        }
+      }
+      .hotTag {
+        .ant-card-body{
+          display: flex;
+          flex-flow: row wrap;
+          padding: 10px;
+          padding-bottom: 0;
+          span {
+            display: block;
+            padding: 4px 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fff;
+            color: #666;
+            font-size: 12px;
+            margin: 0 8px 10px;
+          }
+        }
+      }
+    }
   }
-  .ant-carousel .slick-slide h3 {
-    color: #fff;
+}
+
+// 如果宽度小于376
+@media screen and (max-width: 376px) {
+  .ant-layout-header {
+    padding: 0;
+  }
+  .header {
+    .headerCon {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .header-title {
+      width: 40%;
+    }
+    .header-tags {
+      display: none;
+    }
+    .header-search {
+      max-width: 157px;
+      width: 50%;
+    }
+  }
+  .homeContent {
+    margin-top: 52px;
+    .ant-carousel .slick-slide {
+      height: 200px;
+      line-height: 200px;
+    }
+  }
+  .content {
+    div.content-left {
+      border-right: none;
+    }
+    .siderBox {
+      display: none;
+    }
+  }
+}
+// 如果宽度在375到750
+@media screen and (min-width: 376px) and (max-width: 750px) {
+  .header {
+    padding: 0;
+    .headerCon {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 30px;
+    }
+    .header-title {
+      width: 40%;
+    }
+    .header-tags {
+      display: none;
+    }
+    .header-search {
+      max-width: 157px;
+      width: 50%;
+    }
+  }
+  .homeContent .ant-carousel .slick-slide {
+    height: 200px;
+    line-height: 200px;
+  }
+  .content {
+    div.content-left {
+      border-right: none;
+    }
+    .siderBox {
+      display: none;
+    }
+  }
+}
+// 如果宽度在750 - 970 以内
+@media screen and (min-width: 750px) and (max-width: 970px) {
+  .content {
+    .siderBox {
+      display: none;
+    }
+  }
+}
+// 如果宽度970 - 1200，设置头部内容宽度
+@media screen and (min-width: 970px) and (max-width: 1200px) {
+  .header {
+    .header-tags {
+      width: 66%;
+    }
+    .header-search {
+      width: 20%;
+    }
+  }
+  .homeContent {
+    max-width: 1200px;
+    margin: 52px 30px 0px;
+  }
+}
+// 如果宽度大于1200
+@media screen and (min-width: 1200px) {
+  .header {
+    .header-tags {
+      width: 71%;
+    }
+    .header-search {
+      width: 15%;
+    }
+  }
+  .homeContent {
+    width: 1200px;
+    margin: 52px auto 0px;
   }
 }

@@ -1,19 +1,29 @@
-
+import { GetArticleList } from '../services/home'
 export default {
   namespace: 'home',
-  state: {},
-  subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
-    },
+  state: {
+    list: []
   },
   effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' })
+    *getArticleList ({payLoad}, { call, put }) {
+      const result = yield call(GetArticleList, {
+        url: 'http://localhost:3002/api/getArticleList',
+        method: 'GET',
+        mode: 'cors'
+      })
+      console.log(result)
+      yield put({
+        type: 'save',
+        articleList: result
+      })
     },
   },
   reducers: {
-    save(state, action) {
-      return { ...state, ...action.payload }
+    save (state, action) {
+      return {
+        ...state,
+        list: action.articleList
+      }
     },
   }
 }

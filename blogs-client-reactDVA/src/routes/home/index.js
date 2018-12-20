@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'dva'
 import './index.scss'
-import { Layout, Row, Col, BackTop, Input, Carousel, Dropdown, Menu, Icon, Spin } from 'antd'
-const { Header, Content, Footer } = Layout
+import { Layout, BackTop, Input, Carousel, Dropdown, Menu, Icon, Spin, Card, List, Avatar } from 'antd'
+// import MenuCom from '../../components/menu'
+const { Header, Content, Footer, Sider } = Layout
 const Search = Input.Search
 const menu = (
   <Menu>
@@ -11,13 +12,42 @@ const menu = (
     </Menu.Item>
   </Menu>
 )
-
+const listData = [
+  {
+    text: 'ajax'
+  },
+  {
+    text: 'ajax'
+  },
+  {
+    text: 'ajax'
+  },
+  {
+    text: 'ajax'
+  },
+  {
+    text: 'ajax'
+  },
+  {
+    text: 'ajax'
+  },
+  {
+    text: 'ajax'
+  }
+]
 class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       contentEl: window
     }
+  }
+  async componentDidMount () {
+    await this.props.dispatch({
+      type: 'home/getArticleList'
+    })
+    console.log(this.refs['homeContent'])
+    // this.$refs['homeContent'].addEventListener('', )
   }
   // 获取content内容区的dom结构，用来做antd的backTop，返回顶部
   handleBackTop () {
@@ -29,17 +59,18 @@ class Home extends React.Component {
   }
   render () {
     return (
-      <Layout>
+      <Layout className="homeWrap">
+        {/* <MenuCom/> */}
         <div className="loading"><Spin size="large" /></div>
         <Header className="header">
-          <Row align="middle" justify="space-between" type="flex">
-            <Col xs={4} sm={4} md={4} lg={4} xl={4} className="header-col1">我的个人博客</Col>
-            <Col xs={20} sm={16} md={12} lg={8} xl={16} className="header-col2">
+          <div className="headerCon">
+            <div className="header-title">我的个人博客</div>
+            <div className="header-tags">
               <div className="header-tag">
                 <a href="/">首页</a>
               </div>
               <div className="header-tag">
-                <Dropdown overlay={menu} placement="bottomCenter" overlayClassName="dropDownStyle">
+                <Dropdown trigger={['hover']} overlay={menu} placement="bottomCenter">
                   <a href="/study">学习<Icon type="caret-down" theme="filled" /></a>
                 </Dropdown>
               </div>
@@ -52,23 +83,65 @@ class Home extends React.Component {
               <div className="header-tag">
                 <a href="about">关于我</a>
               </div>
-            </Col>
-            <Col xs={2} sm={4} md={6} lg={8} xl={4} className="header-col3">
+            </div>
+            <div className="header-search">
               <Search
                 placeholder="请输入搜索内容"
-                onSearch={value => this.handleSearch(value)}
-                className="header-search"
-              />
-            </Col>
-          </Row>
+                onSearch={value => this.handleSearch(value)} />
+            </div>
+          </div>
         </Header>
         <Content className="homeContent" ref={(e) => this.handleBackTop(e)}>
           <Carousel autoplay>
-            <div><h3>1</h3></div>
-            <div><h3>2</h3></div>
-            <div><h3>3</h3></div>
-            <div><h3>4</h3></div>
+            {
+              this.props.articleList.length ? this.props.articleList.map(item => {
+                return <img src={item.imgUrl} key={item.id} alt="轮播图"/>
+              }) : ''
+            }
           </Carousel>
+          <Layout className="content">
+            <Layout className="content-left">
+              <Card title="最新推荐" bordered={false}>
+                <List
+                  itemLayout="horizontal"
+                  dataSource={this.props.articleList}
+                  renderItem={item => (
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Avatar src={item.imgUrl} />}
+                        title={<a href="/">{item.title}</a>}
+                        description={item.description}
+                      />
+                    </List.Item>
+                  )}
+                />
+              </Card>
+            </Layout>
+            <Sider width={290} className="siderBox">
+              <Card title="热门标签" bordered={false} className="hotTag">
+                {
+                  listData.map((item, index) => {
+                    return <span key={index}>{item.text}</span>
+                  })
+                }
+              </Card>
+              <Card title="推荐文章" bordered={false} className="recommend">
+                <List
+                  itemLayout="horizontal"
+                  dataSource={this.props.articleList}
+                  renderItem={item => (
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Avatar src={item.imgUrl} />}
+                        title={<a href="/">{item.title}</a>}
+                        description={item.description}
+                      />
+                    </List.Item>
+                  )}
+                />
+              </Card>
+            </Sider>
+          </Layout>
           <BackTop target={() => this.refs['homeContent'] ? this.refs['homeContent'] : window} visibilityHeight="100"/>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
@@ -79,7 +152,10 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
+const mapStatuToProps = state => {
+  return {
+    articleList: state.home.list
+  }
 }
 
-export default connect()(Home)
+export default connect(mapStatuToProps)(Home)
