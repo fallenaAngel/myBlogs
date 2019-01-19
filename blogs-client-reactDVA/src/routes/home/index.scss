@@ -1,4 +1,5 @@
 @import '../../assets/style/config.scss';
+@import './mediaConfig.scss';
 .homeWrap, .ant-layout {
   @include wh(100%, 100%);
   min-width: 375px;
@@ -8,7 +9,6 @@
 }
 .homeContent {
   min-height: 880px;
-  background: #fff;
 }
 .ant-layout-footer {
   padding: 15px 0;
@@ -65,7 +65,6 @@
   top: 0;
   z-index: 999;
   .headerCon {
-    max-width: 1200px;
     color: #fff;
     overflow: hidden;
     display: flex;
@@ -85,6 +84,7 @@
       width: 20%;
       max-width: 100px;
       text-align: center;
+      color: #eee;
       a {
         color: #eee;
         .anticon-caret-down {
@@ -158,115 +158,5 @@
         }
       }
     }
-  }
-}
-
-// 如果宽度小于376
-@media screen and (max-width: 376px) {
-  .ant-layout-header {
-    padding: 0;
-  }
-  .header {
-    .headerCon {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-    }
-    .header-title {
-      width: 40%;
-    }
-    .header-tags {
-      display: none;
-    }
-    .header-search {
-      max-width: 157px;
-      width: 50%;
-    }
-  }
-  .homeContent {
-    margin-top: 52px;
-    .ant-carousel .slick-slide {
-      height: 200px;
-      line-height: 200px;
-    }
-  }
-  .content {
-    div.content-left {
-      border-right: none;
-    }
-    .siderBox {
-      display: none;
-    }
-  }
-}
-// 如果宽度在375到750
-@media screen and (min-width: 376px) and (max-width: 750px) {
-  .header {
-    padding: 0;
-    .headerCon {
-      display: flex;
-      justify-content: space-between;
-      margin: 0 30px;
-    }
-    .header-title {
-      width: 40%;
-    }
-    .header-tags {
-      display: none;
-    }
-    .header-search {
-      max-width: 157px;
-      width: 50%;
-    }
-  }
-  .homeContent .ant-carousel .slick-slide {
-    height: 200px;
-    line-height: 200px;
-  }
-  .content {
-    div.content-left {
-      border-right: none;
-    }
-    .siderBox {
-      display: none;
-    }
-  }
-}
-// 如果宽度在750 - 970 以内
-@media screen and (min-width: 750px) and (max-width: 970px) {
-  .content {
-    .siderBox {
-      display: none;
-    }
-  }
-}
-// 如果宽度970 - 1200，设置头部内容宽度
-@media screen and (min-width: 970px) and (max-width: 1200px) {
-  .header {
-    .header-tags {
-      width: 66%;
-    }
-    .header-search {
-      width: 20%;
-    }
-  }
-  .homeContent {
-    max-width: 1200px;
-    margin: 52px 30px 0px;
-  }
-}
-// 如果宽度大于1200
-@media screen and (min-width: 1200px) {
-  .header {
-    .header-tags {
-      width: 71%;
-    }
-    .header-search {
-      width: 15%;
-    }
-  }
-  .homeContent {
-    width: 1200px;
-    margin: 52px auto 0px;
   }
 }

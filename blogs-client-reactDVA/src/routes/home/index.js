@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'dva'
 import './index.scss'
 import { Layout, BackTop, Input, Carousel, Dropdown, Menu, Icon, Spin, Card, List, Avatar } from 'antd'
-// import MenuCom from '../../components/menu'
+import DrawerCom from '../../components/drawer'
 const { Header, Content, Footer, Sider } = Layout
 const Search = Input.Search
 const menu = (
@@ -46,8 +46,6 @@ class Home extends React.Component {
     await this.props.dispatch({
       type: 'home/getArticleList'
     })
-    console.log(this.refs['homeContent'])
-    // this.$refs['homeContent'].addEventListener('', )
   }
   // 获取content内容区的dom结构，用来做antd的backTop，返回顶部
   handleBackTop () {
@@ -60,7 +58,7 @@ class Home extends React.Component {
   render () {
     return (
       <Layout className="homeWrap">
-        {/* <MenuCom/> */}
+        <DrawerCom/>
         <div className="loading"><Spin size="large" /></div>
         <Header className="header">
           <div className="headerCon">
@@ -69,19 +67,14 @@ class Home extends React.Component {
               <div className="header-tag">
                 <a href="/">首页</a>
               </div>
-              <div className="header-tag">
-                <Dropdown trigger={['hover']} overlay={menu} placement="bottomCenter">
-                  <a href="/study">学习<Icon type="caret-down" theme="filled" /></a>
-                </Dropdown>
-              </div>
+              <Dropdown className="header-tag" trigger={['hover']} overlay={menu} placement="bottomCenter">
+                <a href="/study">学习<Icon type="caret-down" theme="filled" /></a>
+              </Dropdown>
               <div className="header-tag">
                 <a href="/time">时间轴</a>
               </div>
               <div className="header-tag">
                 <a href="/other">其他</a>
-              </div>
-              <div className="header-tag">
-                <a href="about">关于我</a>
               </div>
             </div>
             <div className="header-search">
@@ -94,8 +87,8 @@ class Home extends React.Component {
         <Content className="homeContent" ref={(e) => this.handleBackTop(e)}>
           <Carousel autoplay>
             {
-              this.props.articleList.length ? this.props.articleList.map(item => {
-                return <img src={item.imgUrl} key={item.id} alt="轮播图"/>
+              this.props.articleList.length ? this.props.articleList.map((item, index) => {
+                return <img src={item.imgUrl} key={index} alt="轮播图"/>
               }) : ''
             }
           </Carousel>

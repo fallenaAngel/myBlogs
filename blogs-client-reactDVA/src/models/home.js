@@ -7,11 +7,10 @@ export default {
   effects: {
     *getArticleList ({payLoad}, { call, put }) {
       const result = yield call(GetArticleList, {
-        url: 'http://localhost:3002/api/getArticleList',
+        url: '/api/getArticleList',
         method: 'GET',
         mode: 'cors'
       })
-      console.log(result)
       yield put({
         type: 'save',
         articleList: result

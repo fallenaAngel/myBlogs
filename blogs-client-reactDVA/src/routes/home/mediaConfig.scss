@@ -1,0 +1,116 @@
+
+// 如果宽度小于376
+@media screen and (max-width: 376px) {
+  .ant-layout-header {
+    padding: 0 !important;
+  }
+  .header {
+    .headerCon {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .header-title {
+      width: 40% !important;
+    }
+    .header-tags {
+      display: none !important;
+    }
+    .header-search {
+      width: 44% !important;
+    }
+  }
+  .homeContent {
+    margin: 52px 0 0 !important;
+    .ant-carousel .slick-slide {
+      height: 200px;
+      line-height: 200px;
+    }
+  }
+  .content {
+    div.content-left {
+      border-right: none;
+    }
+    .siderBox {
+      display: none;
+    }
+  }
+}
+
+// 如果宽度在375到750
+@media screen and (min-width: 376px) and (max-width: 750px) {
+  .header {
+    .headerCon {
+      justify-content: space-between;
+    }
+    .header-title {
+      width: 40% !important;
+    }
+    .header-tags {
+      display: none;
+    }
+    .header-search {
+      width: 40% !important;
+    }
+  }
+  // 轮播图设置高度
+  .homeContent .ant-carousel .slick-slide {
+    height: 200px !important;
+    line-height: 200px !important;
+  }
+  .content {
+    .content-left {
+      border-right: none !important;
+    }
+    .siderBox {
+      display: none !important;
+    }
+  }
+}
+
+// 如果宽度在750 - 970 以内
+@media screen and (min-width: 750px) and (max-width: 970px) {
+  .content {
+    .siderBox {
+      display: none;
+    }
+  }
+}
+
+// 如果宽度970 - 1200，设置头部内容宽度
+@media screen and (min-width: 970px) and (max-width: 1200px) {
+  .header {
+    .header-tags {
+      width: 66% !important;
+    }
+    .header-search {
+      width: 20% !important;
+    }
+  }
+  .homeContent {
+    max-width: 1200px;
+  }
+}
+// 如果宽度大于1200
+@media screen and (min-width: 1200px) {
+  .ant-layout-header {
+    padding: 0 !important;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+    .headerCon {
+      width: 1200px !important;
+    }
+    .header-tags {
+      width: 71% !important;
+    }
+    .header-search {
+      width: 15% !important;
+    }
+  }
+  .homeContent {
+    width: 1200px;
+    margin: 52px auto 0px !important;
+  }
+}
