@@ -1,0 +1,58 @@
+@import '../../assets/style/config.scss';
+
+.homeWrap {
+  @include wh(100%, 100%);
+  display: flex;
+  flex-direction: column;
+  .homeContent {
+    background: #333;
+    flex: 1;
+    overflow: auto;
+    .content {
+      max-width: 1200px;
+      min-height: 1176px;
+      margin: 0 auto;
+    }
+  }
+}
+// antd样式重置
+.ant-card-body, .ant-card-head {
+  padding: 0;
+}
+.ant-layout-sider {
+  background: #f0f2f5;
+}
+.ant-list-item {
+  padding: 10px 20px;
+  &:hover {
+    background: rgba(227, 252, 218, 0.5);
+  }
+  .ant-avatar {
+    @include wh(95px, 85px);
+    border-radius: 0;
+  }
+}
+// 轮播图样式重置
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 313px;
+  line-height: 313px;
+  overflow: hidden;
+}
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+
+// loading样式
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  @include wh(100%, 100%);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}

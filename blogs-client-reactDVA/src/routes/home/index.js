@@ -1,36 +1,14 @@
 import React from 'react'
 import { connect } from 'dva'
+import { Layout, BackTop, Carousel, Spin, Card, List, Avatar } from 'antd'
+import Header from '../../components/header'
+import Footer from '../../components/footer'
 import './index.scss'
-import { Layout, BackTop, Input, Carousel, Dropdown, Menu, Icon, Spin, Card, List, Avatar } from 'antd'
-import DrawerCom from '../../components/drawer'
-const { Header, Content, Footer, Sider } = Layout
-const Search = Input.Search
-const menu = (
-  <Menu>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
-    </Menu.Item>
-  </Menu>
-)
+// import DrawerCom from '../../components/drawer'
+const { Content, Sider } = Layout
+
+// 热门标签所需数据
 const listData = [
-  {
-    text: 'ajax'
-  },
-  {
-    text: 'ajax'
-  },
-  {
-    text: 'ajax'
-  },
-  {
-    text: 'ajax'
-  },
-  {
-    text: 'ajax'
-  },
-  {
-    text: 'ajax'
-  },
   {
     text: 'ajax'
   }
@@ -43,6 +21,7 @@ class Home extends React.Component {
     }
   }
   async componentDidMount () {
+    // 获取文章列表数据
     await this.props.dispatch({
       type: 'home/getArticleList'
     })
@@ -58,88 +37,50 @@ class Home extends React.Component {
   render () {
     return (
       <Layout className="homeWrap">
-        <DrawerCom/>
         <div className="loading"><Spin size="large" /></div>
-        <Header className="header">
-          <div className="headerCon">
-            <div className="header-title">我的个人博客</div>
-            <div className="header-tags">
-              <div className="header-tag">
-                <a href="/">首页</a>
-              </div>
-              <Dropdown className="header-tag" trigger={['hover']} overlay={menu} placement="bottomCenter">
-                <a href="/study">学习<Icon type="caret-down" theme="filled" /></a>
-              </Dropdown>
-              <div className="header-tag">
-                <a href="/time">时间轴</a>
-              </div>
-              <div className="header-tag">
-                <a href="/other">其他</a>
-              </div>
-            </div>
-            <div className="header-search">
-              <Search
-                placeholder="请输入搜索内容"
-                onSearch={value => this.handleSearch(value)} />
-            </div>
-          </div>
-        </Header>
         <Content className="homeContent" ref={(e) => this.handleBackTop(e)}>
-          <Carousel autoplay>
-            {
-              this.props.articleList.length ? this.props.articleList.map((item, index) => {
-                return <img src={item.imgUrl} key={index} alt="轮播图"/>
-              }) : ''
-            }
-          </Carousel>
-          <Layout className="content">
-            <Layout className="content-left">
-              <Card title="最新推荐" bordered={false}>
-                <List
-                  itemLayout="horizontal"
-                  dataSource={this.props.articleList}
-                  renderItem={item => (
-                    <List.Item>
-                      <List.Item.Meta
-                        avatar={<Avatar src={item.imgUrl} />}
-                        title={<a href="/">{item.title}</a>}
-                        description={item.description}
-                      />
-                    </List.Item>
-                  )}
-                />
-              </Card>
+          <Header></Header>
+          <div className="content">
+            <Carousel autoplay>
+              {
+                this.props.articleList.length ? this.props.articleList.map((item, index) => {
+                  return <img src={item.imgUrl} key={index} alt="轮播图" />
+                }) : ''
+              }
+            </Carousel>
+            <Layout className="content">
+              <Layout className="content-left">
+                <Card title="最新文章" bordered={false}>
+                  <List
+                    itemLayout="horizontal"
+                    dataSource={this.props.articleList}
+                    renderItem={item => (
+                      <List.Item>
+                        <List.Item.Meta
+                          avatar={<Avatar src={item.imgUrl} />}
+                          title={<a href="/">{item.title}</a>}
+                          description={item.description}>
+                          事件：1
+                        </List.Item.Meta>
+                      </List.Item>
+                    )}
+                  />
+                </Card>
+              </Layout>
+              <Sider width={290} className="siderBox">
+                <Card title="热门标签" bordered={false} className="hotTag">
+                  {
+                    listData.map((item, index) => {
+                      return <span key={index}>{item.text}</span>
+                    })
+                  }
+                </Card>
+              </Sider>
             </Layout>
-            <Sider width={290} className="siderBox">
-              <Card title="热门标签" bordered={false} className="hotTag">
-                {
-                  listData.map((item, index) => {
-                    return <span key={index}>{item.text}</span>
-                  })
-                }
-              </Card>
-              <Card title="推荐文章" bordered={false} className="recommend">
-                <List
-                  itemLayout="horizontal"
-                  dataSource={this.props.articleList}
-                  renderItem={item => (
-                    <List.Item>
-                      <List.Item.Meta
-                        avatar={<Avatar src={item.imgUrl} />}
-                        title={<a href="/">{item.title}</a>}
-                        description={item.description}
-                      />
-                    </List.Item>
-                  )}
-                />
-              </Card>
-            </Sider>
-          </Layout>
-          <BackTop target={() => this.refs['homeContent'] ? this.refs['homeContent'] : window} visibilityHeight="100"/>
+            <BackTop target={() => this.refs['homeContent'] ? this.refs['homeContent'] : window} visibilityHeight="100" />
+          </div>
+          <Footer></Footer>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
       </Layout>
     )
   }

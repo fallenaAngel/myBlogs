@@ -1,0 +1,52 @@
+
+// 头部样式
+.header {
+  width: 100%;
+  height: 52px;
+  background: #222;
+  .headerCon {
+    max-width: 1200px;
+    color: #eee;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  >div {
+    line-height: 52px;
+  }
+  .header-title {
+    width: 14%;
+    a {
+      color: #eee;
+    }
+  }
+  .header-tags {
+    width: 56%;
+    overflow: hidden;
+    .header-tag {
+      float: left;
+      width: 20%;
+      max-width: 100px;
+      text-align: center;
+      color: #eee;
+      a {
+        color: #eee;
+        .anticon-caret-down {
+          margin-left: 5px;
+        }
+      }
+      &:hover {
+        background: rgb(116, 115, 115);
+      }
+    }
+  }
+  // 头部搜索框
+  .header-search {
+    width: 30%;
+    max-width: 240px;
+    input {
+      border-radius: 10px;
+      height: 25px;
+    }
+  }
+}

@@ -1,20 +1,63 @@
 @import '../../assets/style/config.scss';
-@import './mediaConfig.scss';
-.homeWrap, .ant-layout {
+
+.homeWrap {
   @include wh(100%, 100%);
-  min-width: 375px;
-}
-.headerCon, .ant-carousel {
-  min-width: 375px;
-}
-.homeContent {
-  min-height: 880px;
-}
-.ant-layout-footer {
-  padding: 15px 0;
-}
-.ant-layout-header {
-  padding: 0 30px;
+  min-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  background: url('../../assets/images/bg.jpg') left top;
+  .homeContent {
+    flex: 1;
+    overflow: auto;
+    .content {
+      max-width: 1200px;
+      min-height: 1176px;
+      margin: 20px auto;
+      .content-left {
+        flex: 1;
+        border-right: 5px solid #f1f1f1;
+        div.ant-card-head-title {
+          font-weight: bold;
+          height: 50px;
+          line-height: 50px;
+          padding: 0 10px;
+          background: #fbfbfb;
+        }
+      }
+      .siderBox {
+        .ant-card {
+          clear: both;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+          border-radius: 8px;
+          .ant-card-head {
+            padding: 0px 15px 0px;
+            border-bottom: 1px solid #eaeaea;
+            background-color: #fbfbfb;
+            font-size: 18px;
+            line-height: 20px;
+          }
+        }
+        .hotTag {
+          .ant-card-body{
+            display: flex;
+            flex-flow: row wrap;
+            padding: 10px;
+            padding-bottom: 0;
+            span {
+              display: block;
+              padding: 4px 14px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              background: #fff;
+              color: #666;
+              font-size: 12px;
+              margin: 0 8px 10px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 // antd样式重置
 .ant-card-body, .ant-card-head {
@@ -39,6 +82,9 @@
   height: 313px;
   line-height: 313px;
   overflow: hidden;
+  div, img {
+    height: 100%;
+  }
 }
 .ant-carousel .slick-slide h3 {
   color: #fff;
@@ -49,7 +95,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 9999;
+  z-index: 99999;
   @include wh(100%, 100%);
   background: #fff;
   display: flex;
@@ -57,106 +103,4 @@
   justify-content: center;
   display: none;
 }
-// 头部样式
-.header {
-  @include wh(100%, 52px);
-  background: #222;
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  .headerCon {
-    color: #fff;
-    overflow: hidden;
-    display: flex;
-    margin: 0 auto;
-  }
-  >div {
-    line-height: 52px;
-  }
-  .header-title {
-    width: 14%;
-  }
-  .header-tags {
-    width: 56%;
-    overflow: hidden;
-    .header-tag {
-      float: left;
-      width: 20%;
-      max-width: 100px;
-      text-align: center;
-      color: #eee;
-      a {
-        color: #eee;
-        .anticon-caret-down {
-          margin-left: 5px;
-        }
-      }
-      &:hover {
-        background: rgb(116, 115, 115);
-      }
-    }
-  }
-  // 头部搜索框
-  .header-search {
-    width: 30%;
-    input {
-      border-radius: 10px;
-      height: 25px;
-    }
-  }
-}
-// 内容部分
-.homeContent {
-  background: #f0f2f5;
-  margin: 52px 30px 10px;
-  // 内容部分
-  .content {
-    display: flex;
-    margin-top: 10px;
-    box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, .1);
-    .content-left {
-      flex: 1;
-      border-right: 5px solid #f1f1f1;
-      div.ant-card-head-title {
-        font-weight: bold;
-        height: 50px;
-        line-height: 50px;
-        padding: 0 10px;
-        background: #fbfbfb;
-      }
-    }
-    .siderBox {
-      .ant-card {
-        clear: both;
-        margin-bottom: 10px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-        border-radius: 8px;
-        .ant-card-head {
-          padding: 0px 15px 0px;
-          border-bottom: 1px solid #eaeaea;
-          background-color: #fbfbfb;
-          font-size: 18px;
-          line-height: 20px;
-        }
-      }
-      .hotTag {
-        .ant-card-body{
-          display: flex;
-          flex-flow: row wrap;
-          padding: 10px;
-          padding-bottom: 0;
-          span {
-            display: block;
-            padding: 4px 14px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background: #fff;
-            color: #666;
-            font-size: 12px;
-            margin: 0 8px 10px;
-          }
-        }
-      }
-    }
-  }
-}
+

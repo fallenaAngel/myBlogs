@@ -1,0 +1,28 @@
+
+.footer {
+  background: #414141;
+  width: 100%;
+  color: #fff;
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      li {
+        a {
+          padding: 0 10px;
+          color: #aaa;
+          text-decoration: none;
+          cursor: pointer;
+          border-right: 1px solid #aaa;
+          &:hover {
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
+}

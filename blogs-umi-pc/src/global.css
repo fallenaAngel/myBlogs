@@ -1,0 +1,9 @@
+
+/* 约定的全局样式文件，自动引入，也可以用 global.less */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}

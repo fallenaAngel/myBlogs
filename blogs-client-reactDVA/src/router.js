@@ -19,5 +19,4 @@ function RouterConfig({ history, app }) {
     </Router>
   )
 }
-
 export default RouterConfig
